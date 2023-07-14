@@ -1,5 +1,4 @@
 
-const {secret} = require('./secret')
 
 const mysqlKey = {
     host: process.env.host,

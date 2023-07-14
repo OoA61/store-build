@@ -1,0 +1,63 @@
+<!-- emailTemplate.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Order Confirmation for #<%= orderNumber %></title>
+    <style type="text/css">
+        .table{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            border-collapse: collapse;
+        }
+        .table > tr{
+            border-bottom: solid;
+            border-color: white;
+            border-width: 1px;
+        }
+        td{
+            text-align: left;
+        }
+        .align-right{
+            text-align: right;
+        }
+      </style>
+  </head>
+  <body>
+    <h1>Order Confirmation for #<%= orderNumber %></h1>
+    <p>Dear <%= customer.first_name %>,</p>
+    <p>Thank you for your order. Here are the details:</p>
+
+    <h2>Customer Information:</h2>
+    <p>Name: <%= customer.first_name %> <%= customer.last_name %> </p>
+    <p>Email: <%= customer.email %></p>
+    <p>Address: <%= customer.address %></p>
+    <p><%= customer.city %> <%+ customer.state %> <%= customer.zip %> </p>
+
+    <h2>Order Details:</h2>
+    <table class="table" >
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th class="align-right">Total</th>
+        </tr>
+        <% itemReview.forEach(function(item){ %>
+            <tr>
+                <td><%= item.name %></td>
+                <td><%= item.quantity %></td>
+                <td>$<%= item.price %></td>
+                <td class="align-right">$<%= (item.price * item.quantity) %></td>
+            </tr>
+        <% }) %>
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td class="align-right">109</td>
+        </tr>
+    </table>
+    <p>We will be in contact with you shortly in order to schedule a pick up!</p>
+    <p>Please be on the lookout for an email or text so that we can service you promptly</p>
+  </body>
+</html>

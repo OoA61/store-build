@@ -4,15 +4,9 @@ const mysql = require('mysql')
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const nodemailer = require("nodemailer");
+const {mysqlKey} = require('../utils/const/key')
 
-
-const db = mysql.createConnection({
-    host: 'database-1.cbrwxevd9t8e.us-west-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'Blue4524.',
-    database: 'store',
-    port: '3306'
-  });
+const db = mysql.createConnection(mysqlKey);
 
 const { checkEmail, checkPhone, registerUser, User } = require('../utils/AuthFunc');
 
@@ -134,8 +128,8 @@ async function sendMail(email, crypt){
       port: 465,
       secure: true,
       auth: {
-          user: 'racegambit@gmail.com',
-          pass: 'rujohftxrocjqlbd'
+          user: process.env.email,
+          pass: process.env.emailpass
       }
   });
 

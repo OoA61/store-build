@@ -1,19 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql')
-const session = require('express-session');
-const { route } = require('./Auth');
-
 const { Item, sendMail } = require('../utils/AdminFunc');
 const { Order } = require('../utils/OrderFunc')
+const {mysqlKey} = require('../utils/const/key')
 
-const db = mysql.createConnection({
-    host: 'database-1.cbrwxevd9t8e.us-west-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'Blue4524.',
-    database: 'store',
-    port: '3306'
-});
+const db = mysql.createConnection(mysqlKey);
 
 db.connect((err) => {
     if (err) throw err;

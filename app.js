@@ -9,14 +9,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const { User } = require('./utils/AuthFunc');
-const sessionKey = require('./utils/const/key')
+const {sessionOptions} = require('./utils/const/key')
 
 // Session and Auth Management Middleware -------------------------------------------
 
-console.log(sessionKey)
-
 app.use(session({
-  secret: 'secretkey', 
+  secret: sessionOptions.secret, 
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false }
@@ -98,7 +96,8 @@ app.listen(PORT, () => {
 
 const userRouter = require('./routes/Auth.js');
 const adminRouter = require('./routes/Admin.js');
-const orderRouter = require('./routes/Order.js')
+const orderRouter = require('./routes/Order.js');
+const { options } = require('./routes/Auth.js');
 app.use('/Auth', userRouter);
 app.use('/Admin', adminRouter);
 app.use('/Order', orderRouter);

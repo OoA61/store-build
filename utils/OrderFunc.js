@@ -4,14 +4,9 @@ const { resolve } = require('path');
 const nodemailer = require("nodemailer");
 const ejs = require('ejs');
 const path = require('path');
+const {mysqlKey} = require('./const/key')
 
-const db = mysql.createConnection({
-    host: 'database-1.cbrwxevd9t8e.us-west-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'Blue4524.',
-    database: 'store',
-    port: '3306'
-});
+const db = mysql.createConnection(mysqlKey);
 
 db.connect((err) => {
     if (err) throw err;
@@ -192,8 +187,8 @@ const Order = {
             port: 465,
             secure: true,
             auth: {
-                user: 'racegambit@gmail.com',
-                pass: 'rujohftxrocjqlbd'
+                user: process.env.email,
+                pass: process.env.emailpass
             }
         });
         let order = {

@@ -1,13 +1,8 @@
 const mysql = require('mysql')
 const crypto = require('crypto')
+const {mysqlKey} = require('./const/key')
 
-const db = mysql.createConnection({
-    host: 'database-1.cbrwxevd9t8e.us-west-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'Blue4524.',
-    database: 'store',
-    port: '3306'
-});
+const db = mysql.createConnection(mysqlKey);
 
 db.connect((err) => {
     if (err) throw err;

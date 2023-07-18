@@ -10,6 +10,17 @@ db.connect((err) => {
 });
 
 const User = {
+    findAll: function(){
+        return new Promise((resolve, reject) => {
+            db.query(
+                'SELECT * FROM customers',
+                function(err, result){
+                    if(err) reject(err)
+                    resolve(result)
+                }
+            )
+        })
+    },
     findOne: function(email, callback) {
         db.query(
             'SELECT * FROM customers WHERE email = ?',

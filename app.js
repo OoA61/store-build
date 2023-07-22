@@ -63,8 +63,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function(req, res, next){
-  if(req.headers['x-forwarded-proto'] !== 'https'){
-    return res.redirect(['https://', req.get('Host'), req.url].join(''))
+  if(req.headers['x-forwarded-proto'] !== 'https' || !req.headers.host.startsWith('www.')){
+    return res.redirect(301, `https://www.${req.headers.host}${req.url}`)
   }
   next();
 })

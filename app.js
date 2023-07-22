@@ -83,9 +83,9 @@ app.get('/Auth/VerifyEmail/:crypt', async (req, res) => {
     if(customer){
       User.updateCustomerVerification(customer.customer_id)
       User.deleteVerificationCrypt(customer.customer_id)
-      res.redirect(302, 'http://localhost:3001?state=verified')
+      res.redirect(302, 'https://www.casadecleaners.com?state=verified')
     } else {
-      res.redirect(302, 'http://localhost:3001?state=notverified')
+      res.redirect(302, 'https://www.casadecleaners.com?state=notverified')
     }
 })
 

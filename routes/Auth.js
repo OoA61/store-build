@@ -138,7 +138,7 @@ async function sendMail(email, crypt){
       to: `${email}`, // list of receivers
       subject: "Verify your email", // Subject line
       text: "Email Verification", // plain text body
-      html: `http://localhost:3001/Auth/VerifyEmail/${crypt}`
+      html: `https://www.casadecleaners.com/Auth/VerifyEmail/${crypt}`
     });
 
     console.log("Message sent: %s", info.messageId);

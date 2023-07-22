@@ -3,6 +3,12 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path')
 const app = express();
+app.use(function(req, res, next){
+  if(req.headers['x-forwarded-proto'] !== 'https' || !req.headers.host.startsWith('www.')){
+    return res.redirect(301, `https://www.${req.headers.host}${req.url}`)
+  }
+  next();
+})
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
@@ -62,12 +68,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req, res, next){
-  if(req.headers['x-forwarded-proto'] !== 'https' || !req.headers.host.startsWith('www.')){
-    return res.redirect(301, `https://www.${req.headers.host}${req.url}`)
-  }
-  next();
-})
+
 
 // Routes ------------------------------------------------------------------
 

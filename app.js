@@ -61,6 +61,8 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -74,6 +76,9 @@ app.use(passport.session());
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build'));
+    app.use(function(req, res) {
+      res.status(404).redirect('/');
+    });
   });
 
 app.get('/Auth/VerifyEmail/:crypt', async (req, res) => {

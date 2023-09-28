@@ -3,12 +3,12 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path')
 const app = express();
-app.use(function(req, res, next){
+/*app.use(function(req, res, next){
   if(req.headers['x-forwarded-proto'] !== 'https' || !req.headers.host.startsWith('www.')){
     return res.redirect(301, `https://www.${req.headers.host}${req.url}`)
   }
   next();
-})
+})*/
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
@@ -100,11 +100,11 @@ app.get('/test', (req,res) => {
 })
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 
 app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+  console.log(`http://localhost:${PORT}`);
 });
 
 const userRouter = require('./routes/Auth.js');
